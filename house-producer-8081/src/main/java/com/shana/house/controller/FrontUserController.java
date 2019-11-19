@@ -17,17 +17,22 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RequestMapping("front")
 @RestController
-public class FrontLoginController {
+public class FrontUserController {
     @Autowired
     IFrontUserService frontUserService;
 
     @RequestMapping("login")
     public String Login(@RequestBody User user){
         User user1 = frontUserService.Login(user);
-        if(user==null){
+        if(user1==null){
             return "0";
         }
         return "1";
+    }
+
+    @RequestMapping("email")
+    public void sendEmail(@RequestBody String email){
+
     }
 }
 
