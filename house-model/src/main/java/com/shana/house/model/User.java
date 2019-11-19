@@ -431,4 +431,23 @@ public class User {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "uid=" + uid +
+                ", account='" + account + '\'' +
+                ", password='" + password + '\'' +
+                ", sex='" + sex + '\'' +
+                ", birthday=" + birthday +
+                ", age=" + age +
+                ", email='" + email + '\'' +
+                ", mobilephone='" + mobilephone + '\'' +
+                ", selfintroduction='" + selfintroduction + '\'' +
+                ", headimg='" + headimg + '\'' +
+                ", idcard='" + idcard + '\'' +
+                ", createdate=" + createdate +
+                ", status=" + status +
+                '}';
+    }
 }

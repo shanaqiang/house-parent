@@ -17,8 +17,7 @@ zuul:
   prefix: /api # 添加路由前缀
   retryable: true
   routes:
-    item-service: /item/** # 将商品微服务映射到/item/**
-    upload-service: /up/**
+    house-producer-8081: /item/** # 将商品微服务映射到/item/**
 
 ribbon:
   ConnectTimeout: 2000 # 连接超时时间(ms)
