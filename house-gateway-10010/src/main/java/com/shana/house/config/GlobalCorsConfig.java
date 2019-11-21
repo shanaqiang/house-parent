@@ -17,6 +17,7 @@ public class GlobalCorsConfig {
         config.addAllowedOrigin("http://manage.woniu.com:10010");
         config.addAllowedOrigin("http://localhost:8080");
         config.addAllowedOrigin("http://127.0.0.1:8848");
+        config.addAllowedOrigin("http://127.0.0.1:8080");
         config.addAllowedOrigin("http://manage.woniu.com:10010");
         config.addAllowedOrigin("http://manage.woniu.com:9001");
         config.addAllowedOrigin("http://www.woniu.com");

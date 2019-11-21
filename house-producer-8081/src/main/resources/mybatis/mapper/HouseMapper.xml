@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mybatis.mapper.HouseMapper">
+<mapper namespace="com.shana.house.mapper.HouseMapper">
   <resultMap id="BaseResultMap" type="com.shana.house.model.House">
     <!--
       WARNING - @mbg.generated
@@ -56,6 +56,13 @@
       #{description,jdbcType=VARCHAR}, #{startdate,jdbcType=DATE}, #{enddate,jdbcType=DATE}, 
       #{price,jdbcType=DOUBLE}, #{seecount,jdbcType=INTEGER}, #{createdate,jdbcType=DATE}, 
       #{status,jdbcType=INTEGER})
+  </insert>
+
+  <insert id="insertHnameAndDes" parameterType="com.shana.house.model.House">
+    <selectKey keyProperty="hid" order="AFTER" resultType="int">
+      select LAST_INSERT_ID()
+    </selectKey>
+      insert into t_house(hname,description) values (#{hname},#{description})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.shana.house.model.House">
     <!--
