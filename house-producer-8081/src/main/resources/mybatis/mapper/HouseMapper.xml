@@ -115,6 +115,7 @@
     from t_house
   </select>
 
+
   <select id="selectHouseQvByHid" parameterType="java.lang.Integer" resultType="com.shana.house.qv.HouseQv">
       select h.* ,u.uid, u.account
       from t_house h
