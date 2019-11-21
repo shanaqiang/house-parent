@@ -46,6 +46,7 @@ public class HouseComment {
      *
      * @mbg.generated Mon Nov 18 20:16:27 CST 2019
      */
+
     private Date createdate;
 
     /**
