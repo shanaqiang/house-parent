@@ -52,4 +52,7 @@ public interface HouseCommentMapper {
     int updateByPrimaryKey(HouseComment record);
 
     List<HouseCommentQv> selectThreeComment(int hid);
+
+    @Select("select count(*) from t_housecomment where hid=#{hid}")
+    int selectCountByHid(int hid);
 }

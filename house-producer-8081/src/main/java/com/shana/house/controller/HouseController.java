@@ -1,6 +1,7 @@
 package com.shana.house.controller;
 
 import com.netflix.discovery.converters.Auto;
+import com.shana.house.model.HouseBed;
 import com.shana.house.model.HouseComment;
 import com.shana.house.model.HouseImg;
 import com.shana.house.qv.HouseCommentQv;
@@ -26,20 +27,32 @@ public class HouseController {
     IHouseService houseService;
     @GetMapping("housedetail/{hid}")
     public HouseQv showOneHouseDetail(@PathVariable("hid") int hid){
-        HouseQv houseQv=houseService.OneHouseDetailByHid(hid);
+        HouseQv houseQv=houseService.oneHouseDetailByHid(hid);
         return houseQv;
     }
 
     @GetMapping("houseimg/{hid}")
     public List<HouseImg> showOneHouseAllImg(@PathVariable("hid") int hid){
-        List<HouseImg> listimgs=houseService.OneHouseAllImg(hid);
+        List<HouseImg> listimgs=houseService.oneHouseAllImg(hid);
         return listimgs;
     }
 
     @GetMapping("housecomment/{hid}")
     public List<HouseCommentQv> showThreeComment(@PathVariable("hid") int hid){
-        System.out.println(hid);
-        List<HouseCommentQv> listcommentqvs=houseService.OneHouseThreeComment(hid);
+        List<HouseCommentQv> listcommentqvs=houseService.oneHouseThreeComment(hid);
         return listcommentqvs;
+    }
+
+    @GetMapping("housebed/{hid}")
+    public List<HouseBed> showHouseBed(@PathVariable("hid") int hid){
+        List<HouseBed> listHouseBed=houseService.oneHouseBed(hid);
+        return listHouseBed;
+    }
+
+    @GetMapping("housecommentcount/{hid}")
+    public int showHouseCommentCount(@PathVariable("hid") int hid){
+        System.out.println(hid);
+        int commentcount=houseService.oneHouseCommentCount(hid);
+        return commentcount;
     }
 }

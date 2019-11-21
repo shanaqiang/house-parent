@@ -57,6 +57,13 @@
       #{price,jdbcType=DOUBLE}, #{seecount,jdbcType=INTEGER}, #{createdate,jdbcType=DATE}, 
       #{status,jdbcType=INTEGER})
   </insert>
+
+  <insert id="insertHnameAndDes" parameterType="com.shana.house.model.House">
+    <selectKey keyProperty="hid" order="AFTER" resultType="int">
+      select LAST_INSERT_ID()
+    </selectKey>
+      insert into t_house(hname,description) values (#{hname},#{description})
+  </insert>
   <update id="updateByPrimaryKey" parameterType="com.shana.house.model.House">
     <!--
       WARNING - @mbg.generated

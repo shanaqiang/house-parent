@@ -1,9 +1,11 @@
 package com.shana.house.service;
 
 import com.netflix.discovery.converters.Auto;
+import com.shana.house.mapper.HouseBedMapper;
 import com.shana.house.mapper.HouseCommentMapper;
 import com.shana.house.mapper.HouseImgMapper;
 import com.shana.house.mapper.HouseMapper;
+import com.shana.house.model.HouseBed;
 import com.shana.house.model.HouseComment;
 import com.shana.house.model.HouseImg;
 import com.shana.house.qv.HouseCommentQv;
@@ -29,20 +31,34 @@ public class HouseServiceImpl implements IHouseService{
     HouseImgMapper houseImgMapper;
     @Autowired
     HouseCommentMapper houseCommentMapper;
+    @Autowired
+    HouseBedMapper houseBedMapper;
     @Override
-    public HouseQv OneHouseDetailByHid(Integer hid) {
+    public HouseQv oneHouseDetailByHid(Integer hid) {
         return houseMapper.selectHouseQvByHid(hid);
     }
 
     @Override
-    public List<HouseImg> OneHouseAllImg(int hid) {
+    public List<HouseImg> oneHouseAllImg(int hid) {
         List<HouseImg> list=houseImgMapper.selectAllImgByHid(hid);
         return list;
     }
 
     @Override
-    public List<HouseCommentQv> OneHouseThreeComment(int hid) {
+    public List<HouseCommentQv> oneHouseThreeComment(int hid) {
         List<HouseCommentQv> list=houseCommentMapper.selectThreeComment(hid);
         return list;
+    }
+
+    @Override
+    public List<HouseBed> oneHouseBed(int hid) {
+        List<HouseBed> list=houseBedMapper.selectAllByHid(hid);
+        return list;
+    }
+
+    @Override
+    public int oneHouseCommentCount(int hid) {
+        int count=houseCommentMapper.selectCountByHid(hid);
+        return count;
     }
 }
