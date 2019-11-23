@@ -1,6 +1,8 @@
 package com.shana.house.mapper;
 
 import com.shana.house.model.User;
+import com.shana.house.qv.UserP;
+import org.apache.ibatis.annotations.Insert;
 import com.shana.house.rs.BackUserVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -54,6 +56,11 @@ public interface UserMapper {
 
     @Select("select * from t_user where account=#{account} and password=#{password}")
     User selectByAccountAndPassword(String account,String password);
+    @Select("select * from t_user where account=#{account}")
+    User selectByAccount(String account);
+
+    @Insert("insert into t_user(account,mobilephone,password) values(#{account},#{mobilephone},#{password})")
+    int insertUser(UserP user);
 
     List<User> selectUser(BackUserVo vo) ;
 
