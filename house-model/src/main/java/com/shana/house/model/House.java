@@ -629,4 +629,29 @@ public class House {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "House{" +
+                "hid=" + hid +
+                ", uid=" + uid +
+                ", hname='" + hname + '\'' +
+                ", location='" + location + '\'' +
+                ", city='" + city + '\'' +
+                ", housetype=" + housetype +
+                ", rentaltype=" + rentaltype +
+                ", img='" + img + '\'' +
+                ", maxtenant=" + maxtenant +
+                ", bedroomnum=" + bedroomnum +
+                ", bednum=" + bednum +
+                ", bathroomnum=" + bathroomnum +
+                ", description='" + description + '\'' +
+                ", startdate=" + startdate +
+                ", enddate=" + enddate +
+                ", price=" + price +
+                ", seecount=" + seecount +
+                ", createdate=" + createdate +
+                ", status=" + status +
+                '}';
+    }
 }

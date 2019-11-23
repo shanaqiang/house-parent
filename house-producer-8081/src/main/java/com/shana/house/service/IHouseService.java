@@ -1,10 +1,9 @@
 package com.shana.house.service;
 
-import com.shana.house.model.HouseBed;
-import com.shana.house.model.HouseComment;
-import com.shana.house.model.HouseImg;
+import com.shana.house.model.*;
 import com.shana.house.qv.HouseCommentQv;
 import com.shana.house.qv.HouseQv;
+import com.shana.house.qv.Instal;
 
 import java.util.List;
 
@@ -19,4 +18,8 @@ public interface IHouseService {
     List<HouseBed> oneHouseBed(int hid);
 
     int oneHouseCommentCount(int hid);
+
+    List<Instal> oneHouseInstal(int hid);
+
+    List<House> AllHouseByCity(String city);
 }

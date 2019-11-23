@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mybatis.mapper.HouseInstallationsMapper">
+<mapper namespace="com.shana.house.mapper.HouseInstallationsMapper">
   <resultMap id="BaseResultMap" type="com.shana.house.model.HouseInstallations">
     <!--
       WARNING - @mbg.generated
@@ -131,4 +131,9 @@
     createdate, status
     from t_houseinstallations
   </select>
+
+  <select id="selectOneHouseInstallations" parameterType="java.lang.Integer" resultType="com.shana.house.model.HouseInstallations">
+      select * from t_houseinstallations where hid=#{hid,jdbcType=INTEGER}
+  </select>
+
 </mapper>
