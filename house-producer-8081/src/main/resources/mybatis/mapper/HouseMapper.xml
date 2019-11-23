@@ -62,7 +62,7 @@
     <selectKey keyProperty="hid" order="AFTER" resultType="int">
       select LAST_INSERT_ID()
     </selectKey>
-      insert into t_house(hname,description) values (#{hname},#{description})
+      insert into t_house(hname,description,createdate,status) values (#{hname},#{description},#{createdate},2)
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.shana.house.model.House">
     <!--
