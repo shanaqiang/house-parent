@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mybatis.mapper.HouseCommentMapper">
+<mapper namespace="com.shana.house.mapper.HouseCommentMapper">
   <resultMap id="BaseResultMap" type="com.shana.house.model.HouseComment">
     <!--
       WARNING - @mbg.generated
@@ -68,5 +68,14 @@
     -->
     select hcid, hid, uid, message, createdate, status
     from t_housecomment
+  </select>
+
+  <select id="selectThreeComment" parameterType="java.lang.Integer" resultType="com.shana.house.qv.HouseCommentQv">
+      select c.* ,u.account,u.headimg
+      from t_housecomment c
+      inner join t_user u
+      on c.uid=u.uid
+      where hid = #{hid,jdbcType=INTEGER}
+      limit 0,3
   </select>
 </mapper>

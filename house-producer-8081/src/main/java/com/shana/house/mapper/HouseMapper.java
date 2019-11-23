@@ -1,6 +1,11 @@
 package com.shana.house.mapper;
 
 import com.shana.house.model.House;
+import com.shana.house.model.HouseInstallations;
+import com.shana.house.qv.HouseQv;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
@@ -49,5 +54,10 @@ public interface HouseMapper {
      */
     int updateByPrimaryKey(House record);
 
+    HouseQv selectHouseQvByHid(Integer hid);
+
     void insertHnameAndDes(House house);
+
+    List<House> selectAllHouseByCity(String city);
+
 }

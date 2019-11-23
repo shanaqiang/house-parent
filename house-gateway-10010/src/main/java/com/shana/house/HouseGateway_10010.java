@@ -17,7 +17,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 @SpringBootApplication
 @EnableEurekaClient
 @EnableZuulProxy
-@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 60*30)
+@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 60 * 30)
 public class HouseGateway_10010 {
     public static void main(String[] args) {
         SpringApplication.run(HouseGateway_10010.class,args);

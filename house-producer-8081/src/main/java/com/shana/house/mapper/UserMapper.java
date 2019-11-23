@@ -1,8 +1,10 @@
 package com.shana.house.mapper;
 
 import com.shana.house.model.User;
+import com.shana.house.rs.BackUserVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -52,5 +54,10 @@ public interface UserMapper {
 
     @Select("select * from t_user where account=#{account} and password=#{password}")
     User selectByAccountAndPassword(String account,String password);
+
+    List<User> selectUser(BackUserVo vo) ;
+
+    @Update("Update t_user set status = #{status} where uid in ${ids}" )
+    void UpdateUserStatusByIds(BackUserVo vo) ;
 
 }

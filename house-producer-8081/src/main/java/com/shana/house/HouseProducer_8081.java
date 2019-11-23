@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableTransactionManagement
-@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 60*30)
+@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 60 * 30)
 public class HouseProducer_8081 {
     public static void main(String[] args) {
         SpringApplication.run(HouseProducer_8081.class,args);

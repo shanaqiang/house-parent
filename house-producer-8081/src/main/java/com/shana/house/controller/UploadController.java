@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * 功能描述:<br>
  * 〈〉
@@ -24,7 +26,8 @@ public class UploadController {
     UploadService uploadService;
 
     @PostMapping("uploadimg")
-    public String uploadImg(@RequestParam("file")MultipartFile file){
+    public String uploadImg(@RequestParam("file")MultipartFile file, HttpServletRequest request){
+
         return uploadService.upload(file);
     }
 }
