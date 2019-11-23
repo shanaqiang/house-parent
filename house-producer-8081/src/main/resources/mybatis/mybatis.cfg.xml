@@ -6,4 +6,9 @@
     <settings>
         <setting name="cacheEnabled" value="true"/><!-- 二级缓存开启 -->
     </settings>
+
+    <!--<plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+        </plugin>
+    </plugins>-->
 </configuration>

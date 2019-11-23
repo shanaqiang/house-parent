@@ -89,4 +89,20 @@
     headimg, idcard, createdate, status
     from t_user
   </select>
+
+  <select id="selectUser" parameterType="backUserVo" resultType="User">
+    select * from t_user
+    <where>
+      <if test="account!=null and account.trim()!=''">
+        and account like '%${account}%'
+      </if>
+      <if test="sex!=null and sex.trim()!='全部'">
+        and sex = #{sex}
+      </if>
+      <if test="status!=null and status!=-1">
+        and status = #{status}
+      </if>
+    </where>
+  </select>
+
 </mapper>
