@@ -2,7 +2,6 @@ package com.shana.house.mapper;
 
 import com.shana.house.model.HouseInstallations;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -52,4 +51,5 @@ public interface HouseInstallationsMapper {
 
 
     HouseInstallations selectOneHouseInstallations(int hid);
+
 }

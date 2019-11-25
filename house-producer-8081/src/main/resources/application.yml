@@ -1,5 +1,10 @@
 server:
   port: 8081
+logging:
+  level:
+    com:
+      looedu:
+        mapper: debug
 mybatis:
   config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
   type-aliases-package:
