@@ -893,4 +893,37 @@ public class HouseInstallations {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "HouseInstallations{" +
+                "hsid=" + hsid +
+                ", hid=" + hid +
+                ", needed=" + needed +
+                ", airconditioner=" + airconditioner +
+                ", heating=" + heating +
+                ", hairdrier=" + hairdrier +
+                ", iron=" + iron +
+                ", television=" + television +
+                ", independententry=" + independententry +
+                ", shampoo=" + shampoo +
+                ", wifi=" + wifi +
+                ", desk=" + desk +
+                ", breakfast=" + breakfast +
+                ", fireextinguisher=" + fireextinguisher +
+                ", coalarm=" + coalarm +
+                ", smokedetector=" + smokedetector +
+                ", firstaidkit=" + firstaidkit +
+                ", kitchen=" + kitchen +
+                ", washingmachine=" + washingmachine +
+                ", dryer=" + dryer +
+                ", parkingspace=" + parkingspace +
+                ", gym=" + gym +
+                ", swimmingpool=" + swimmingpool +
+                ", bathtub=" + bathtub +
+                ", elevator=" + elevator +
+                ", createdate=" + createdate +
+                ", status=" + status +
+                '}';
+    }
 }
