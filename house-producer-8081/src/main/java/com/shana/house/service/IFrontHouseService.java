@@ -22,4 +22,6 @@ public interface IFrontHouseService {
     List<House> findHouseByUid(String uid);
 
     HouseInstallations findHouseInstallationsByHid(String hid);
+
+    List<House> findHouseByUid(int uid);
 }

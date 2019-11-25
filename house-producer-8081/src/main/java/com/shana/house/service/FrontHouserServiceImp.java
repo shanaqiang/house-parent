@@ -92,6 +92,11 @@ public class FrontHouserServiceImp implements IFrontHouseService {
         return houseInstallationsMapper.selectOneHouseInstallations(Integer.parseInt(hid));
     }
 
+    @Override
+    public List<House> findHouseByUid(int uid) {
+        return houseMapper.selectHouseByUid(uid+"");
+    }
+
 
 }
 

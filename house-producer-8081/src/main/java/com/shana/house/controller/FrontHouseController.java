@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 功能描述:<br>
@@ -75,9 +76,10 @@ public class FrontHouseController {
         if(session.getAttribute("hid")==null){
             return "0";
         }
-        String hid=(String)session.getAttribute("hid");
+        String hid=session.getAttribute("hid")+"";
         String s=(String)session.getAttribute("house");
         House house1 = gson.fromJson(s, House.class);
+        System.out.println(house.getLocation());
         house1.setLocation(house.getLocation());
         house1.setCity(house.getCity());
         house1.setHid(Integer.parseInt(hid));
@@ -157,13 +159,28 @@ public class FrontHouseController {
         if(session.getAttribute("hid")==null){
             return "0";
         }
-        String hid= (String)session.getAttribute("hid");
+        String hid= session.getAttribute("hid")+"";
         if(houseService.findHouseInstallationsByHid(hid)==null){
             return "0";
         }
         return "1";
     }
 
+    @RequestMapping("cleansession")
+    public void cleanSession(HttpSession session){
+        if(session.getAttribute("hid")!=null){
+            session.removeAttribute("hid");
+        }
+    }
+
+    @RequestMapping("finduserhouse")
+    public List<House> findHouseByUser(HttpSession session){
+        /*String user1 = (String)session.getAttribute("user");
+        User user = gson.fromJson(user1, User.class);
+        return houseService.findHouseByUid(user.getUid());*/
+        //先默认写uid=3
+        return houseService.findHouseByUid(3);
+    }
 
 }
 
