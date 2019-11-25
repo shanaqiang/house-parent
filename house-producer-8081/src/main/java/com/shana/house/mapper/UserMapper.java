@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 
 @Mapper
@@ -66,5 +67,21 @@ public interface UserMapper {
 
     @Update("Update t_user set status = #{status} where uid in ${ids}" )
     void UpdateUserStatusByIds(BackUserVo vo) ;
+
+    @Select("select * from t_user where account =#{account}")
+    User sekectByAccount(String account);
+    @Insert("update t_user set birthday=#{birthday},age=#{age} where account =#{account}")
+    int changeAge(String account, Date birthday, Integer age);
+    @Insert("update t_user set sex=#{sex} where account =#{account}")
+    int changeSxe(String account, String sex);
+    @Insert("update t_user set email=#{email} where account =#{account}")
+    int changeEmail(String account, String email);
+    @Insert("update t_user set mmobilephone=#{mobilephone} where account =#{account}")
+    int changePhone(String account, String mobilephone);
+    @Insert("update t_user set headimg=#{headimg} where account =#{account}")
+    int changeImg(String account, String headimg);
+
+
+
 
 }

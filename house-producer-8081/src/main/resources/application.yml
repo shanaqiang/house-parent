@@ -13,17 +13,6 @@ mybatis:
   mapper-locations:
     - classpath:mybatis/mapper/**/*.xml                       # mapper映射文件
 spring:
-  redis:
-    #地址
-    host: 116.62.218.239
-    #端口
-    port: 6379
-    #索引库
-    database: 1
-    #密码
-    password:
-    #超时时间
-    timeout: 5000ms
   application:
     name: house-producer-8081
   datasource:
