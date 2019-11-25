@@ -20,4 +20,6 @@ public interface IFrontHouseService {
     void updateHousePriceAndDate(House house);
 
     List<House> findHouseByUid(String uid);
+
+    HouseInstallations findHouseInstallationsByHid(String hid);
 }

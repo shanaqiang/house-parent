@@ -37,7 +37,7 @@ public class FrontHouseController {
         Gson gson=new Gson();
         String house1 = gson.toJson(house, House.class);
         session.setAttribute("house",house1);
-        System.out.println("往session中存入hname和description");
+        System.out.println("往session中存入hname和description"+session.getId());
         return "1";
     }
 
@@ -47,7 +47,7 @@ public class FrontHouseController {
         String house1=(String)session.getAttribute("house");
         Gson gson=new Gson();
         House house = gson.fromJson(house1, House.class);
-        System.out.println(house+"从session中取出的house");
+        System.out.println(house+"从session中取出的house"+session.getId());
         //将房屋信息插入数据库
         if(house==null){
             return "0";
@@ -142,6 +142,26 @@ public class FrontHouseController {
         Student test = gson.fromJson(s, Student.class);
         System.out.println(session.getId());
         return test;
+    }
+
+    @RequestMapping("getmes02")
+    public String getMes02(HttpSession session){
+        if(session.getAttribute("hid")==null) {
+            return "0";
+        }
+        return "1";
+    }
+
+    @RequestMapping("getmes03")
+    public String getMes03(HttpSession session){
+        if(session.getAttribute("hid")==null){
+            return "0";
+        }
+        String hid= (String)session.getAttribute("hid");
+        if(houseService.findHouseInstallationsByHid(hid)==null){
+            return "0";
+        }
+        return "1";
     }
 
 
