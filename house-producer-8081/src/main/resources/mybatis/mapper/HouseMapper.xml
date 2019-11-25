@@ -62,7 +62,7 @@
     <selectKey keyProperty="hid" order="AFTER" resultType="int">
       select LAST_INSERT_ID()
     </selectKey>
-      insert into t_house(hname,description) values (#{hname},#{description})
+      insert into t_house(hname,description,createdate,status) values (#{hname},#{description},#{createdate},2)
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.shana.house.model.House">
     <!--
@@ -117,11 +117,15 @@
 
 
   <select id="selectHouseQvByHid" parameterType="java.lang.Integer" resultType="com.shana.house.qv.HouseQv">
-      select h.* ,u.uid, u.account
+      select h.* ,u.uid, u.account,u.sex,u.email,u.mobilephone,u.selfintroduction,u.headimg
       from t_house h
       inner join t_user u
       on h.uid=u.uid
       where hid = #{hid,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectAllHouseByCity" parameterType="java.lang.String" resultMap="BaseResultMap">
+      select * from t_house where city = #{city,jdbcType=VARCHAR}and status=1
   </select>
 
 </mapper>

@@ -1,12 +1,12 @@
 package com.shana.house.controller;
 
 import com.netflix.discovery.converters.Auto;
-import com.shana.house.model.HouseBed;
-import com.shana.house.model.HouseComment;
-import com.shana.house.model.HouseImg;
+import com.shana.house.model.*;
 import com.shana.house.qv.HouseCommentQv;
 import com.shana.house.qv.HouseQv;
+import com.shana.house.qv.Instal;
 import com.shana.house.service.IHouseService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,8 +51,20 @@ public class HouseController {
 
     @GetMapping("housecommentcount/{hid}")
     public int showHouseCommentCount(@PathVariable("hid") int hid){
-        System.out.println(hid);
         int commentcount=houseService.oneHouseCommentCount(hid);
         return commentcount;
+    }
+
+    @GetMapping("houseinstallations/{hid}")
+    public List<Instal> showHouseInstal(@PathVariable("hid") int hid){
+        List<Instal> list=houseService.oneHouseInstal(hid);
+        return list;
+    }
+
+    @GetMapping("selectbycity")
+    public List<House> showHouseByCity(String city){
+        System.out.println(city);
+        List<House> list=houseService.AllHouseByCity(city);
+        return list;
     }
 }

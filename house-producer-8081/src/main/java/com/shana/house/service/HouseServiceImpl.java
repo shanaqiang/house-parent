@@ -1,19 +1,19 @@
 package com.shana.house.service;
 
 import com.netflix.discovery.converters.Auto;
-import com.shana.house.mapper.HouseBedMapper;
-import com.shana.house.mapper.HouseCommentMapper;
-import com.shana.house.mapper.HouseImgMapper;
-import com.shana.house.mapper.HouseMapper;
-import com.shana.house.model.HouseBed;
-import com.shana.house.model.HouseComment;
-import com.shana.house.model.HouseImg;
+import com.shana.house.mapper.*;
+import com.shana.house.model.*;
 import com.shana.house.qv.HouseCommentQv;
 import com.shana.house.qv.HouseQv;
+import com.shana.house.qv.Instal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 功能描述:<br>
@@ -33,6 +33,8 @@ public class HouseServiceImpl implements IHouseService{
     HouseCommentMapper houseCommentMapper;
     @Autowired
     HouseBedMapper houseBedMapper;
+    @Autowired
+    HouseInstallationsMapper houseInstallationsMapper;
     @Override
     public HouseQv oneHouseDetailByHid(Integer hid) {
         return houseMapper.selectHouseQvByHid(hid);
@@ -60,5 +62,37 @@ public class HouseServiceImpl implements IHouseService{
     public int oneHouseCommentCount(int hid) {
         int count=houseCommentMapper.selectCountByHid(hid);
         return count;
+    }
+
+    @Override
+    public List<Instal> oneHouseInstal(int hid) {
+        HouseInstallations houseinstal=houseInstallationsMapper.selectOneHouseInstallations(hid);
+        Field[] fields=houseinstal.getClass().getDeclaredFields();
+        List<Instal> list=new ArrayList<>();
+        for(int i=2;i<fields.length-2;i++){
+            Instal instal=new Instal();
+            try {
+                fields[i].setAccessible(true);
+                String name=fields[i].getName();
+                System.out.println(name);
+                Object value=fields[i].get(houseinstal);
+                System.out.println(value);
+                instal.setName(name);
+                instal.setValue((Integer) value);
+                if(instal.getValue()==1){
+                    list.add(instal);
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println(list);
+        return list;
+    }
+
+    @Override
+    public List<House> AllHouseByCity(String city) {
+        List<House> list=houseMapper.selectAllHouseByCity(city);
+        return list;
     }
 }

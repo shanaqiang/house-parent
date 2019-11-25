@@ -3,9 +3,8 @@ package com.shana.house.mapper;
 import com.shana.house.model.House;
 import com.shana.house.qv.HouseQv;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Component;
-
-import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -56,4 +55,16 @@ public interface HouseMapper {
     HouseQv selectHouseQvByHid(Integer hid);
 
     void insertHnameAndDes(House house);
+
+    List<House> selectAllHouseByCity(String city);
+
+    @Update("update t_house set housetype=#{housetype},rentaltype=#{rentaltype},maxtenant=#{maxtenant},bedroomnum=#{bedroomnum}," +
+            "bednum=#{bednum},bathroomnum=#{bathroomnum},location=#{location},city=#{city} where hid=#{hid}")
+    void updateHouseMessage(House house);
+
+    @Update("update t_house set price=#{price},startdate=#{startdate},enddate=#{enddate} where hid=#{hid}")
+    void updateHousePriceAndDate(House house);
+
+    @Select("select * from t_house where uid=#{uid}")
+    List<House> selectHouseByUid(String uid);
 }
