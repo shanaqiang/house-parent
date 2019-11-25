@@ -1,9 +1,13 @@
 package com.shana.house.service;
 
 import com.shana.house.mapper.HouseImgMapper;
+import com.shana.house.mapper.HouseInstallationsMapper;
 import com.shana.house.mapper.HouseMapper;
+import com.shana.house.mapper.HouseRuleMapper;
 import com.shana.house.model.House;
 import com.shana.house.model.HouseImg;
+import com.shana.house.model.HouseInstallations;
+import com.shana.house.model.HouseRule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +31,10 @@ public class FrontHouserServiceImp implements IFrontHouseService {
     HouseMapper houseMapper;
     @Autowired
     HouseImgMapper houseImgMapper;
+    @Autowired
+    HouseInstallationsMapper houseInstallationsMapper;
+    @Autowired
+    HouseRuleMapper houseRuleMapper;
 
     @Override
     public void addHouseNameAndDes(House house, String[] imgs1) {
@@ -48,5 +56,37 @@ public class FrontHouserServiceImp implements IFrontHouseService {
             houseImgMapper.insertImg(imgs.get(i));
         }
     }
+
+    @Override
+    public void updateHouseMes(House house) {
+        houseMapper.updateHouseMessage(house);
+    }
+
+    @Override
+    public void addHouseInstallations(HouseInstallations houseInstallations) {
+        houseInstallationsMapper.insert(houseInstallations);
+    }
+
+    @Override
+    public void addHouseRule(HouseRule houseRule) {
+        houseRuleMapper.insert(houseRule);
+    }
+
+    @Override
+    public House findHouseByHid(int hid) {
+        return houseMapper.selectByPrimaryKey(hid);
+    }
+
+    @Override
+    public void updateHousePriceAndDate(House house) {
+        houseMapper.updateHousePriceAndDate(house);
+    }
+
+    @Override
+    public List<House> findHouseByUid(String uid) {
+        return houseMapper.selectHouseByUid(uid);
+    }
+
+
 }
 
