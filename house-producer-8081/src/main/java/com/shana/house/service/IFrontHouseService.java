@@ -1,6 +1,7 @@
 package com.shana.house.service;
 
 import com.shana.house.model.House;
+import com.shana.house.model.HouseAddress;
 import com.shana.house.model.HouseInstallations;
 import com.shana.house.model.HouseRule;
 
@@ -24,4 +25,10 @@ public interface IFrontHouseService {
     HouseInstallations findHouseInstallationsByHid(String hid);
 
     List<House> findHouseByUid(int uid);
+
+    HouseRule findHouseRuleByHid(int hid);
+
+    void addHouseAddress(HouseAddress houseAddress);
+
+    HouseAddress findHouseAddressByHid(int hid);
 }

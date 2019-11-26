@@ -16,6 +16,9 @@ spring:
     timeout: 5000ms
   session:
     store-type: redis
+  servlet:
+    multipart:
+      max-file-size: 50MB # 限制文件上传的大小
 eureka:
   client:
     service-url:
@@ -29,9 +32,6 @@ eureka:
 zuul:
   prefix: /api # 添加路由前缀
   retryable: true
-  house-producer-8081:
-    path: /item/**
-    sensitiveHeaders: "*"
   routes:
     house-producer-8081:
       path: /item/**

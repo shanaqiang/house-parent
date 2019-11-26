@@ -2,11 +2,13 @@ package com.shana.house.controller;
 
 import com.google.gson.Gson;
 import com.shana.house.model.House;
+import com.shana.house.model.HouseAddress;
 import com.shana.house.model.HouseInstallations;
 import com.shana.house.model.HouseRule;
 import com.shana.house.qv.Student;
 import com.shana.house.service.IFrontHouseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -53,6 +55,7 @@ public class FrontHouseController {
         if(house==null){
             return "0";
         }
+        house.setImg(imgs1[0]);
         houseService.addHouseNameAndDes(house,imgs1);
         //往session中 存储了hid
         session.setAttribute("hid",house.getHid());
@@ -131,19 +134,19 @@ public class FrontHouseController {
     @RequestMapping("test01")
     public void test01(HttpSession session){
         Student student=new Student(11,"charles","男");
-        Gson gson=new Gson();
-        String s = gson.toJson(student, Student.class);
-        session.setAttribute("test",s);
+        /*Gson gson=new Gson();
+        String s = gson.toJson(student, Student.class);*/
+        session.setAttribute("test",student);
         System.out.println("往session中存入了charles"+session.getId());
     }
 
     @RequestMapping("test02")
     public Student test02(HttpSession session){
-        String s = (String) session.getAttribute("test");
-        Gson gson=new Gson();
-        Student test = gson.fromJson(s, Student.class);
+        Student s = (Student) session.getAttribute("test");
+        /*Gson gson=new Gson();
+        Student test = gson.fromJson(s, Student.class);*/
         System.out.println(session.getId());
-        return test;
+        return s;
     }
 
     @RequestMapping("getmes02")
@@ -151,19 +154,11 @@ public class FrontHouseController {
         if(session.getAttribute("hid")==null) {
             return "0";
         }
-        return "1";
-    }
-
-    @RequestMapping("getmes03")
-    public String getMes03(HttpSession session){
-        if(session.getAttribute("hid")==null){
-            return "0";
-        }
         String hid= session.getAttribute("hid")+"";
         if(houseService.findHouseInstallationsByHid(hid)==null){
-            return "0";
+            return "1";
         }
-        return "1";
+        return "2";
     }
 
     @RequestMapping("cleansession")
@@ -181,6 +176,62 @@ public class FrontHouseController {
         //先默认写uid=3
         return houseService.findHouseByUid(3);
     }
+
+    @RequestMapping("sethid/{hid}")
+    public void setHid(@PathVariable("hid")int hid,HttpSession session){
+        session.setAttribute("hid",hid);
+    }
+
+    @RequestMapping("findhousehid")
+    public House findHouseHid(HttpSession session){
+        if(session.getAttribute("hid")==null){
+            return null;
+        }
+        int hid=(int)session.getAttribute("hid");
+        return houseService.findHouseByHid(hid);
+    }
+
+    @RequestMapping("findhouseinstallationshid")
+    public HouseInstallations findHouseInstallationsHid(HttpSession session){
+        if(session.getAttribute("hid")==null){
+            return null;
+        }
+        int hid=(int)session.getAttribute("hid");
+        return houseService.findHouseInstallationsByHid(hid+"");
+    }
+
+    @RequestMapping("findhouserulehid")
+    public HouseRule findHouseRuleHid(HttpSession session){
+        if(session.getAttribute("hid")==null){
+            return null;
+        }
+        int hid=(int)session.getAttribute("hid");
+        return houseService.findHouseRuleByHid(hid);
+    }
+
+    @RequestMapping("addhouseaddress")
+    public String addHouseAddress(@RequestBody HouseAddress houseAddress,HttpSession session){
+        if(session.getAttribute("hid")==null){
+            return "0";
+        }
+        int hid=(int)session.getAttribute("hid");
+        houseAddress.setHid(hid);
+        houseAddress.setCreatedate(new Date());
+        houseAddress.setStatus(1);
+        System.out.println(houseAddress);
+        houseService.addHouseAddress(houseAddress);
+        return "1";
+    }
+
+    @RequestMapping("findhouseaddresshid")
+    public HouseAddress findHouseAddressHid(HttpSession session){
+        if(session.getAttribute("hid")==null){
+            return null;
+        }
+        int hid=(int)session.getAttribute("hid");
+        return houseService.findHouseAddressByHid(hid);
+    }
+
 
 }
 

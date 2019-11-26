@@ -35,7 +35,7 @@ spring:
     #JsonInclude.Include.NON_NULL      属性为NULL  不序列化
     default-property-inclusion: ALWAYS
     time-zone: GMT+8
-    date-format: yyyy-MM-dd HH:mm:ss
+    date-format: yyyy-MM-dd
   redis:
     #地址
     host: 116.62.218.239

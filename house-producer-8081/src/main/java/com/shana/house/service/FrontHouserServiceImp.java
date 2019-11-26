@@ -1,13 +1,7 @@
 package com.shana.house.service;
 
-import com.shana.house.mapper.HouseImgMapper;
-import com.shana.house.mapper.HouseInstallationsMapper;
-import com.shana.house.mapper.HouseMapper;
-import com.shana.house.mapper.HouseRuleMapper;
-import com.shana.house.model.House;
-import com.shana.house.model.HouseImg;
-import com.shana.house.model.HouseInstallations;
-import com.shana.house.model.HouseRule;
+import com.shana.house.mapper.*;
+import com.shana.house.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +29,8 @@ public class FrontHouserServiceImp implements IFrontHouseService {
     HouseInstallationsMapper houseInstallationsMapper;
     @Autowired
     HouseRuleMapper houseRuleMapper;
+    @Autowired
+    HouseAddressMapper houseAddressMapper;
 
     @Override
     public void addHouseNameAndDes(House house, String[] imgs1) {
@@ -69,6 +65,9 @@ public class FrontHouserServiceImp implements IFrontHouseService {
 
     @Override
     public void addHouseRule(HouseRule houseRule) {
+        if(houseRuleMapper.selectByHid(houseRule.getHid())!=null){
+            houseRuleMapper.deleteByHid(houseRule.getHid());
+        }
         houseRuleMapper.insert(houseRule);
     }
 
@@ -95,6 +94,24 @@ public class FrontHouserServiceImp implements IFrontHouseService {
     @Override
     public List<House> findHouseByUid(int uid) {
         return houseMapper.selectHouseByUid(uid+"");
+    }
+
+    @Override
+    public HouseRule findHouseRuleByHid(int hid) {
+        return houseRuleMapper.selectByHid(hid);
+    }
+
+    @Override
+    public void addHouseAddress(HouseAddress houseAddress) {
+        if(houseAddressMapper.selectByHid(houseAddress.getHid())!=null){
+            houseAddressMapper.deleteHouseAddressByHid(houseAddress.getHid());
+        }
+        houseAddressMapper.insertHouseAddress(houseAddress);
+    }
+
+    @Override
+    public HouseAddress findHouseAddressByHid(int hid) {
+        return houseAddressMapper.selectByHid(hid);
     }
 
 
