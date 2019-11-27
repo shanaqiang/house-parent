@@ -25,5 +25,4 @@ public interface IHouseService {
     List<House> AllHouseByCity(String city);
 
     List<StartAndEndDate> selectAllDate(int hid);
-
 }

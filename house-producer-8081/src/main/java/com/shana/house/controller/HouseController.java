@@ -79,5 +79,4 @@ public class HouseController {
          List<StartAndEndDate> list=houseService.selectAllDate(hid);
          return list;
     }
-
 }
