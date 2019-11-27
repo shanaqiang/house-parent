@@ -1,6 +1,7 @@
 package com.shana.house.mapper;
 
 import com.shana.house.model.HouseInstallations;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
@@ -51,5 +52,8 @@ public interface HouseInstallationsMapper {
 
 
     HouseInstallations selectOneHouseInstallations(int hid);
+
+    @Delete("delete from t_houseinstallations where hid=#{hid}")
+    void deleteHouseInstallationsByHid(int hid);
 
 }
