@@ -101,8 +101,6 @@ public class FrontUserController {
         String account= (String) session.getAttribute("user");
         String a=mobilephone.split(":")[1];
         String b=a.substring(1,a.length()-2);
-        System.out.println(account);
-        System.out.println(mobilephone);
         frontUserService.changePhone(account,b);
         return "1";
     }
@@ -112,7 +110,6 @@ public class FrontUserController {
         String account= (String) session.getAttribute("user");
         String a=email.split(":")[1];
         String b=a.substring(1,a.length()-2);
-
         frontUserService.changeEmail(account,b);
         return "1";
     }

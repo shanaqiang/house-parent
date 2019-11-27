@@ -1,6 +1,8 @@
 package com.shana.house.mapper;
 
 import com.shana.house.model.Orders;
+import com.shana.house.qv.OrderSearch;
+
 import java.util.List;
 
 public interface OrdersMapper {
@@ -43,4 +45,6 @@ public interface OrdersMapper {
      * @mbg.generated Mon Nov 18 20:16:27 CST 2019
      */
     int updateByPrimaryKey(Orders record);
+
+    OrderSearch selectByOid(String oid);
 }
