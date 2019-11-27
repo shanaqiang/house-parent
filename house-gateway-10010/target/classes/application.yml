@@ -1,0 +1,52 @@
+server:
+  port: 10010
+spring:
+  application:
+    name: house-gateway
+  redis:
+    #地址
+    host: 116.62.218.239
+    #端口
+    port: 6379
+    #索引库
+    database: 1
+    #密码
+    password:
+    #超时时间
+    timeout: 5000ms
+  session:
+    store-type: redis
+  servlet:
+    multipart:
+      max-file-size: 50MB # 限制文件上传的大小
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10001/eureka
+    registry-fetch-interval-seconds: 5
+  instance:
+    prefer-ip-address: true  #ip优先，获取host时会获取到ip地址
+    ip-address: 127.0.0.1
+    instance-id: ${spring.application.name}:${server.port} #在eureka中的实例id
+#zull管理的网址前面要加api，起识别的作用，同时开启重试的功能
+zuul:
+  prefix: /api # 添加路由前缀
+  retryable: true
+  routes:
+    house-producer-8081:
+      path: /item/**
+      sensitiveHeaders: "*"
+
+ribbon:
+  ConnectTimeout: 2000 # 连接超时时间(ms)
+  ReadTimeout: 2000 # 通信超时时间(ms)
+  OkToRetryOnAllOperations: true # 是否对所有操作重试
+  MaxAutoRetriesNextServer: 1 # 同一服务不同实例的重试次数
+  MaxAutoRetries: 1 # 同一实例的重试次数
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMillisecond: 10000 # 熔断超时时长：10000ms
