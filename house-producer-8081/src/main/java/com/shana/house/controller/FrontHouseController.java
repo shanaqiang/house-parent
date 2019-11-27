@@ -1,10 +1,7 @@
 package com.shana.house.controller;
 
 import com.google.gson.Gson;
-import com.shana.house.model.House;
-import com.shana.house.model.HouseAddress;
-import com.shana.house.model.HouseInstallations;
-import com.shana.house.model.HouseRule;
+import com.shana.house.model.*;
 import com.shana.house.qv.Student;
 import com.shana.house.service.IFrontHouseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +52,10 @@ public class FrontHouseController {
         if(house==null){
             return "0";
         }
-        house.setImg(imgs1[0]);
+        if(session.getAttribute("hid")!=null){
+            int hid=(int)session.getAttribute("hid");
+            house.setHid(hid);
+        }
         houseService.addHouseNameAndDes(house,imgs1);
         //往session中 存储了hid
         session.setAttribute("hid",house.getHid());
@@ -124,6 +124,7 @@ public class FrontHouseController {
         }
         int hid=(int)session.getAttribute("hid");
         house.setHid(hid);
+        house.setStatus(0);
         System.out.println(house);
         houseService.updateHousePriceAndDate(house);
         return "1";
@@ -230,6 +231,15 @@ public class FrontHouseController {
         }
         int hid=(int)session.getAttribute("hid");
         return houseService.findHouseAddressByHid(hid);
+    }
+
+    @RequestMapping("findhouseimghid")
+    public List<HouseImg> findHouseImgHid(HttpSession session){
+        if(session.getAttribute("hid")==null){
+            return null;
+        }
+        int hid=(int)session.getAttribute("hid");
+        return houseService.findHouseImgHid(hid);
     }
 
 

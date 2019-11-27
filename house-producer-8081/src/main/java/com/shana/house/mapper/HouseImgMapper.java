@@ -1,11 +1,8 @@
 package com.shana.house.mapper;
 
-import com.shana.house.model.House;
 import com.shana.house.model.HouseImg;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Component;
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
@@ -60,4 +57,7 @@ public interface HouseImgMapper {
 
     @Select("select * from t_houseimg where hid=#{hid}")
     List<HouseImg> selectAllImgByHid(int hid);
+
+    @Delete("delete from t_houseimg where hid=#{hid}")
+    void deleteByHid(int hid);
 }

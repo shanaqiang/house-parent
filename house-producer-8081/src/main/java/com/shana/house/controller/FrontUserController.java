@@ -45,9 +45,8 @@ public class FrontUserController {
         if(user1==null){
             return "0";
         }
-        Gson gson=new Gson();
-        String usera = gson.toJson(user.getAccount(), String.class);
-        session.setAttribute("user",usera);
+       String account= user.getAccount();
+        session.setAttribute("user",account);
         return "1";
     }
 
@@ -81,11 +80,9 @@ public class FrontUserController {
 
     //查询个人信息
     @RequestMapping("myInfo")
-    public UserD myInfo(HttpSession session){
-        User user = (User) session.getAttribute("user");
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-DD-mm");
-        UserD userd=new UserD(user,sdf.format(user.getBirthday()+""));
-        return userd;
+    public User myInfo(HttpSession session){
+        String account= (String) session.getAttribute("user");
+        return frontUserService.sekectByAccount(account);
     }
 
     //生日时间处理
@@ -96,47 +93,46 @@ public class FrontUserController {
         Date date=new Date();
         SimpleDateFormat sdf=new SimpleDateFormat("yyy-MM-dd");
         long age=(date.getTime()-sdf.parse(b).getTime())/1000/365/24/60/60+1;
-        String account= ((User) session.getAttribute("user")).getAccount();
+        String account= (String) session.getAttribute("user");
         Integer age1=new Integer((int)age);
         frontUserService.changeAge(account,sdf.parse(b),age1);
         return  ""+age;
     }
     //修改性別
     @RequestMapping("changeSex")
-    public String changeSex(@RequestBody  UserD userd,HttpSession session){
-        String account= ((User) session.getAttribute("user")).getAccount();
-        frontUserService.changeSxe(account,userd.getUser().getSex());
-        return "1";
-    }
-
-    @RequestMapping("changeEmail")
-    public String changeEmail(@RequestBody  UserD userd,HttpSession session){
-        String account= ((User) session.getAttribute("user")).getAccount();
-        frontUserService.changeEmail(account,userd.getUser().getEmail());
+    public String changeSex(@RequestBody  User user,HttpSession session){
+        String account= (String) session.getAttribute("user");
+        frontUserService.changeSxe(account,user.getSex());
         return "1";
     }
 
     @RequestMapping("changePhone")
-    public String changePhone(@RequestBody  UserD userd,HttpSession session){
-        String account= ((User) session.getAttribute("user")).getAccount();
-        frontUserService.changePhone(account,userd.getUser().getMobilephone());
+    public String changeEmail(@RequestBody  String mobilephone,HttpSession session){
+        String account= (String) session.getAttribute("user");
+        String a=mobilephone.split(":")[1];
+        String b=a.substring(1,a.length()-2);
+        frontUserService.changePhone(account,b);
+        return "1";
+    }
+    //联系方式更新
+    @RequestMapping("changeEmail")
+    public String changePhone(@RequestBody  String email,HttpSession session){
+        String account= (String) session.getAttribute("user");
+        String a=email.split(":")[1];
+        String b=a.substring(1,a.length()-2);
+        frontUserService.changeEmail(account,b);
         return "1";
     }
     //修改个人头像
     @RequestMapping("uploadImg")
     public String uploadImg(@RequestParam("file") MultipartFile file,HttpSession session){
-        String account= ((User) session.getAttribute("user")).getAccount();
+        String account= (String) session.getAttribute("user");
         String upload = uploadService.upload(file);
         frontUserService.changeImg(account,upload);
         return upload;
     }
 
-
-    //查询我的收藏
-//    @RequestMapping("mylike")
-//    public List
-
-
+        //ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
 }
 
 

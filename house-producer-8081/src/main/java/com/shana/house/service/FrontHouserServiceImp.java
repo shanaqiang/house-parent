@@ -39,7 +39,14 @@ public class FrontHouserServiceImp implements IFrontHouseService {
         System.out.println("触发了上传数据库的方法");
         //将房屋名称插入数据库
         house.setCreatedate(new Date());
-        houseMapper.insertHnameAndDes(house);
+        house.setImg(imgs1[0].substring(imgs1[0].indexOf("http"),imgs1[0].indexOf("png")+3));
+        if(house.getHid()!=null){
+            if(house.getHid()!=0){
+                houseMapper.updateHouseNameAndDesc(house);
+            }
+        }else {
+            houseMapper.insertHnameAndDes(house);
+        }
         //处理房屋图片并且插入数据库
         List<HouseImg> imgs=new ArrayList<>();
         for(String str:imgs1){
@@ -48,6 +55,11 @@ public class FrontHouserServiceImp implements IFrontHouseService {
             houseImg.setImg(str.substring(str.indexOf("http"),str.indexOf("png")+3));
             imgs.add(houseImg);
         }
+        //删除之前的图片
+        if(houseImgMapper.selectAllImgByHid(house.getHid())!=null){
+            houseImgMapper.deleteByHid(house.getHid());
+        }
+        //添加新的图片
         for(int i=0;i<imgs.size();i++){
             imgs.get(i).setCreatedate(new Date());
             imgs.get(i).setStatus(1);
@@ -62,6 +74,10 @@ public class FrontHouserServiceImp implements IFrontHouseService {
 
     @Override
     public void addHouseInstallations(HouseInstallations houseInstallations) {
+        int hid = houseInstallations.getHid();
+        if(houseInstallationsMapper.selectOneHouseInstallations(hid)!=null){
+            houseInstallationsMapper.deleteHouseInstallationsByHid(hid);
+        }
         houseInstallationsMapper.insert(houseInstallations);
     }
 
@@ -114,6 +130,11 @@ public class FrontHouserServiceImp implements IFrontHouseService {
     @Override
     public HouseAddress findHouseAddressByHid(int hid) {
         return houseAddressMapper.selectByHid(hid);
+    }
+
+    @Override
+    public List<HouseImg> findHouseImgHid(int hid) {
+        return houseImgMapper.selectAllImgByHid(hid);
     }
 
 

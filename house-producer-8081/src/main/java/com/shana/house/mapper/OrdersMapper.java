@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
 
+import com.shana.house.qv.OrderSearch;
+
 import java.util.List;
 
 @Mapper
@@ -52,4 +54,6 @@ public interface OrdersMapper {
 
     @Select("select * from t_orders where hid=#{hid} and status=1")
     List<Orders> selectOrderByHid(int hid);
+
+    OrderSearch selectByOid(String oid);
 }
