@@ -104,7 +104,7 @@ public class FrontUserController {
         frontUserService.changePhone(account,b);
         return "1";
     }
-
+    //联系方式更新
     @RequestMapping("changeEmail")
     public String changePhone(@RequestBody  String email,HttpSession session){
         String account= (String) session.getAttribute("user");
