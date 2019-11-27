@@ -1,9 +1,6 @@
 package com.shana.house.service;
 
-import com.shana.house.model.House;
-import com.shana.house.model.HouseAddress;
-import com.shana.house.model.HouseInstallations;
-import com.shana.house.model.HouseRule;
+import com.shana.house.model.*;
 
 import java.util.List;
 
@@ -31,4 +28,6 @@ public interface IFrontHouseService {
     void addHouseAddress(HouseAddress houseAddress);
 
     HouseAddress findHouseAddressByHid(int hid);
+
+    List<HouseImg> findHouseImgHid(int hid);
 }

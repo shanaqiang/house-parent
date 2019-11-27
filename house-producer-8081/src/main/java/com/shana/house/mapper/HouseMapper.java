@@ -62,9 +62,12 @@ public interface HouseMapper {
             "bednum=#{bednum},bathroomnum=#{bathroomnum},location=#{location},city=#{city} where hid=#{hid}")
     void updateHouseMessage(House house);
 
-    @Update("update t_house set price=#{price},startdate=#{startdate},enddate=#{enddate} where hid=#{hid}")
+    @Update("update t_house set price=#{price},startdate=#{startdate},enddate=#{enddate},status=#{status} where hid=#{hid}")
     void updateHousePriceAndDate(House house);
 
     @Select("select * from t_house where uid=#{uid}")
     List<House> selectHouseByUid(String uid);
+
+    @Update("update t_house set hname=#{hname},description=#{description},img=#{img} where hid=#{hid}")
+    void updateHouseNameAndDesc(House house);
 }
