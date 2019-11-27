@@ -70,4 +70,10 @@ public interface HouseMapper {
 
     @Update("update t_house set hname=#{hname},description=#{description},img=#{img} where hid=#{hid}")
     void updateHouseNameAndDesc(House house);
+
+    @Select("select * from t_house where status=1")
+    List<House> selectAllHouse1();
+
+    @Update("update t_house set status=0 where hid=#{hid}")
+    void setHouseStatus0(int hid);
 }

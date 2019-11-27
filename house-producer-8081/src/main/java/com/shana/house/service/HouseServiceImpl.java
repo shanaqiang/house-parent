@@ -1,8 +1,10 @@
 package com.shana.house.service;
 
-import com.netflix.discovery.converters.Auto;
 import com.shana.house.mapper.*;
-import com.shana.house.model.*;
+import com.shana.house.model.House;
+import com.shana.house.model.HouseBed;
+import com.shana.house.model.HouseImg;
+import com.shana.house.model.HouseInstallations;
 import com.shana.house.qv.HouseCommentQv;
 import com.shana.house.qv.HouseQv;
 import com.shana.house.qv.Instal;
@@ -11,9 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 功能描述:<br>
@@ -92,7 +92,12 @@ public class HouseServiceImpl implements IHouseService{
 
     @Override
     public List<House> AllHouseByCity(String city) {
-        List<House> list=houseMapper.selectAllHouseByCity(city);
+        List<House> list=new ArrayList<>();
+        if(city.equals("全部")){
+            list=houseMapper.selectAllHouse1();
+        }else{
+            list=houseMapper.selectAllHouseByCity(city);
+        }
         return list;
     }
 }

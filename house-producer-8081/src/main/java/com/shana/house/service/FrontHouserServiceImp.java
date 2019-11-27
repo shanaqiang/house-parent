@@ -135,6 +135,11 @@ public class FrontHouserServiceImp implements IFrontHouseService {
         return houseImgMapper.selectAllImgByHid(hid);
     }
 
+    @Override
+    public void updateHouseStatus0(int hid) {
+        houseMapper.setHouseStatus0(hid);
+    }
+
 
 }
 
