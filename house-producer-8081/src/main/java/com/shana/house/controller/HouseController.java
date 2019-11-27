@@ -73,6 +73,7 @@ public class HouseController {
         return list;
     }
 
+
     @GetMapping("alldate/{hid}")
     public List<StartAndEndDate> alldate(@PathVariable("hid") int hid){
          List<StartAndEndDate> list=houseService.selectAllDate(hid);

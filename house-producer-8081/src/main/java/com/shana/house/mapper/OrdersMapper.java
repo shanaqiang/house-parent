@@ -52,6 +52,7 @@ public interface OrdersMapper {
      */
     int updateByPrimaryKey(Orders record);
 
+
     @Select("select * from t_orders where hid=#{hid} and status=1")
     List<Orders> selectOrderByHid(int hid);
 

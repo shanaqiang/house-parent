@@ -14,6 +14,7 @@ import java.util.Date;
  */
 @Data
 public class StartAndEndDate {
+
     private Date startdate;
     private Date enddate;
 }

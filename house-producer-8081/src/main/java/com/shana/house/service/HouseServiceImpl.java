@@ -1,10 +1,7 @@
 package com.shana.house.service;
 
 import com.shana.house.mapper.*;
-import com.shana.house.model.House;
-import com.shana.house.model.HouseBed;
-import com.shana.house.model.HouseImg;
-import com.shana.house.model.HouseInstallations;
+import com.shana.house.model.*;
 import com.shana.house.qv.HouseCommentQv;
 import com.shana.house.qv.HouseQv;
 import com.shana.house.qv.Instal;
