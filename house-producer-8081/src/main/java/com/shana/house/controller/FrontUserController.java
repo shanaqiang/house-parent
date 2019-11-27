@@ -1,10 +1,6 @@
 package com.shana.house.controller;
 
-import com.google.gson.Gson;
-import com.netflix.ribbon.proxy.annotation.Http;
-import com.shana.house.model.House;
 import com.shana.house.model.User;
-import com.shana.house.qv.UserD;
 import com.shana.house.qv.UserP;
 import com.shana.house.service.IFrontUserService;
 import com.shana.house.service.PhoneCode;
@@ -13,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -88,6 +83,7 @@ public class FrontUserController {
     //生日时间处理
     @RequestMapping("birth")
     public String birth(@RequestBody  String birth,HttpSession session) throws ParseException {
+        System.out.println(session.getId()+"---------------------------");
         String a=birth.split(":")[1];
         String b=a.substring(1,a.length()-2);
         Date date=new Date();
@@ -127,6 +123,7 @@ public class FrontUserController {
     @RequestMapping("uploadImg")
     public String uploadImg(@RequestParam("file") MultipartFile file,HttpSession session){
         String account= (String) session.getAttribute("user");
+        System.out.println(session.getId()+"===============================");
         String upload = uploadService.upload(file);
         frontUserService.changeImg(account,upload);
         return upload;

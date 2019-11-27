@@ -30,4 +30,6 @@ public interface IFrontHouseService {
     HouseAddress findHouseAddressByHid(int hid);
 
     List<HouseImg> findHouseImgHid(int hid);
+
+    void updateHouseStatus0(int hid);
 }

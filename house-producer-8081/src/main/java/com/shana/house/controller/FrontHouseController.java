@@ -175,12 +175,13 @@ public class FrontHouseController {
         User user = gson.fromJson(user1, User.class);
         return houseService.findHouseByUid(user.getUid());*/
         //先默认写uid=3
-        return houseService.findHouseByUid(3);
+        return houseService.findHouseByUid(4);
     }
 
     @RequestMapping("sethid/{hid}")
     public void setHid(@PathVariable("hid")int hid,HttpSession session){
         session.setAttribute("hid",hid);
+        houseService.updateHouseStatus0(hid);
     }
 
     @RequestMapping("findhousehid")
