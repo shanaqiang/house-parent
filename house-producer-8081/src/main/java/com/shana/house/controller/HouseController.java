@@ -5,11 +5,15 @@ import com.shana.house.model.*;
 import com.shana.house.qv.HouseCommentQv;
 import com.shana.house.qv.HouseQv;
 import com.shana.house.qv.Instal;
+import com.shana.house.qv.StartAndEndDate;
 import com.shana.house.service.IHouseService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,6 +31,7 @@ public class HouseController {
     IHouseService houseService;
     @GetMapping("housedetail/{hid}")
     public HouseQv showOneHouseDetail(@PathVariable("hid") int hid){
+        System.out.println(hid);
         HouseQv houseQv=houseService.oneHouseDetailByHid(hid);
         return houseQv;
     }
@@ -67,4 +72,11 @@ public class HouseController {
         List<House> list=houseService.AllHouseByCity(city);
         return list;
     }
+
+    @GetMapping("alldate/{hid}")
+    public List<StartAndEndDate> alldate(@PathVariable("hid") int hid){
+         List<StartAndEndDate> list=houseService.selectAllDate(hid);
+         return list;
+    }
+
 }
