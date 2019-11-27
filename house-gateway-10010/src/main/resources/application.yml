@@ -3,6 +3,10 @@ server:
 spring:
   application:
     name: house-gateway
+
+  servlet:
+    multipart:
+      max-file-size: 50MB # 限制文件上传的大小
   redis:
     #地址
     host: 116.62.218.239

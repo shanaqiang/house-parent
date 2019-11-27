@@ -4,6 +4,7 @@ import com.shana.house.model.*;
 import com.shana.house.qv.HouseCommentQv;
 import com.shana.house.qv.HouseQv;
 import com.shana.house.qv.Instal;
+import com.shana.house.qv.StartAndEndDate;
 
 import java.util.List;
 
@@ -22,4 +23,6 @@ public interface IHouseService {
     List<Instal> oneHouseInstal(int hid);
 
     List<House> AllHouseByCity(String city);
+
+    List<StartAndEndDate> selectAllDate(int hid);
 }

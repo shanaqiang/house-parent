@@ -1,5 +1,10 @@
 server:
   port: 8081
+logging:
+  level:
+    com:
+      looedu:
+        mapper: debug
 mybatis:
   config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
   type-aliases-package:
@@ -22,6 +27,15 @@ spring:
   servlet:
     multipart:
       max-file-size: 50MB # 限制文件上传的大小
+  jackson:
+    #参数意义：
+    #JsonInclude.Include.ALWAYS       默认
+    #JsonInclude.Include.NON_DEFAULT   属性为默认值不序列化
+    #JsonInclude.Include.NON_EMPTY     属性为 空（””） 或者为 NULL 都不序列化
+    #JsonInclude.Include.NON_NULL      属性为NULL  不序列化
+    default-property-inclusion: ALWAYS
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd
   redis:
     #地址
     host: 116.62.218.239
@@ -33,6 +47,7 @@ spring:
     password:
     #超时时间
     timeout: 5000ms
+
   session:
     store-type: redis
 eureka:

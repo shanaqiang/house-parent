@@ -332,4 +332,20 @@ public class HouseRule {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "HouseRule{" +
+                "hrid=" + hrid +
+                ", hid=" + hid +
+                ", child=" + child +
+                ", baby=" + baby +
+                ", pets=" + pets +
+                ", smoking=" + smoking +
+                ", party=" + party +
+                ", others=" + others +
+                ", createdate=" + createdate +
+                ", status=" + status +
+                '}';
+    }
 }
